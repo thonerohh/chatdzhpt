@@ -28,7 +28,7 @@ def generatin(subcontext):
   # Non-streaming:
   print("----- standard request -----")
   completion = client.chat.completions.create(
-      model="gpt-4",
+      model="gpt-4o",
       messages=[
           {
               "role": "user",
@@ -39,21 +39,20 @@ def generatin(subcontext):
   print(completion.choices[0].message.content)
   return completion.choices[0].message.content
 
-def init():
-  count = 0
-  
+def init():  
   # count files in the output directory
-  for file in os.listdir(OUTPUTDIR):
-    if file.endswith('.txt'):
-      count += 1
+  if (os.listdir(OUTPUTDIR) == []):
+    count = 0
+  else:
+    count = len(os.listdir(OUTPUTDIR))
 
   with open(INPUTFILE, 'r', encoding='utf-8') as f:
     contexted = f.read()
 
-
+  # data = generatin(contexted)
   data = generatin(contexted)
 
-  with open(OUTPUTFILE + count + '.txt', 'w', encoding='utf-8') as f:
+  with open(OUTPUTFILE + str(count) + '.txt', 'w', encoding='utf-8') as f:
       f.write(data)
 
 if __name__ == '__main__':
