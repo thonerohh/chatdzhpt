@@ -10,6 +10,10 @@ OUTPUTFILE = os.path.join(OUTPUTDIR, 'response')
 KEY = 'YourDoubleAPIKEY_forsafeinjectionprotection__mostlymental'
 KEYSECONDLY = 'YourDoubleAPIKEY_forsafeinjectionprotection__mostlymental'
 
+# load ./key and paste to KEYSECONDLY
+with open('./key', 'r') as f:
+  KEYSECONDLY = f.read()
+
 # Use the second key as the API key for the example
 os.environ["OPENAI_API_KEY"] = KEYSECONDLY
 
